@@ -427,18 +427,22 @@
     <div id="formContainer">
       <h3>Оставьте заявку</h3>
       <p class="sub">Расскажите, какой сайт вам нужен.</p>
-      <form id="orderForm">
+      <form id="orderForm" action="https://formsubmit.co/mrfeoder@mail.ru" method="POST">
+        <input type="hidden" name="_subject" value="Новая заявка на сайт!" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="https://mrfeoder.github.io/besplatniy-sait/?sent=ok" />
         <div class="form-group">
           <label for="name">Ваше имя</label>
-          <input type="text" id="name" placeholder="Александр" required />
+          <input type="text" name="Имя" id="name" placeholder="Александр" required />
         </div>
         <div class="form-group">
           <label for="contact">Телефон / Telegram</label>
-          <input type="text" id="contact" placeholder="@username или +7 (999) 123-45-67" required />
+          <input type="text" name="Контакты" id="contact" placeholder="@username или +7 (999) 123-45-67" required />
         </div>
         <div class="form-group">
           <label for="type">Тип сайта</label>
-          <select id="type">
+          <select name="Тип сайта" id="type">
             <option value="landing">Лендинг (одностраничный)</option>
             <option value="business">Сайт-визитка</option>
             <option value="store">Интернет-магазин</option>
@@ -448,7 +452,7 @@
         </div>
         <div class="form-group">
           <label for="desc">Опишите идею</label>
-          <textarea id="desc" placeholder="Расскажите о вашем бизнесе, какие функции нужны, какой стиль предпочитаете..."></textarea>
+          <textarea name="Описание" id="desc" placeholder="Расскажите о вашем бизнесе, какие функции нужны, какой стиль предпочитаете..."></textarea>
         </div>
         <button type="submit" class="btn btn-primary btn-full">Отправить заявку</button>
       </form>
@@ -472,12 +476,10 @@
   const container = document.getElementById('formContainer');
   const success = document.getElementById('successMsg');
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Имитация отправки
+  if (window.location.search.includes('sent=ok')) {
     container.style.display = 'none';
     success.classList.add('show');
-  });
+  }
 </script>
 
 </body>
