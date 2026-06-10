@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Создание сайтов — Бесплатно</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0b0d17;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ───── hero ───── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 600px 400px at 50% 30%, rgba(99, 102, 241, 0.15), transparent);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 100px;
+      font-size: 0.85rem;
+      color: #a5b4fc;
+      background: rgba(99, 102, 241, 0.08);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.3px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      max-width: 720px;
+      background: linear-gradient(to right, #fff 60%, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      margin-top: 1.2rem;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: #94a3b8;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 12px;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn-primary {
+      background: #6366f1;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+    }
+    .btn-primary:hover {
+      background: #4f46e5;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(99, 102, 241, 0.45);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+    }
+    .btn-outline:hover {
+      border-color: #6366f1;
+      color: #fff;
+    }
+
+    /* ───── floating orbs ───── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 400px; height: 400px;
+      background: #6366f1;
+      top: -100px; left: -100px;
+    }
+    .orb-2 {
+      width: 300px; height: 300px;
+      background: #06b6d4;
+      bottom: -80px; right: -80px;
+    }
+
+    /* ───── features ───── */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #6366f1;
+      margin-bottom: 0.75rem;
+    }
+
+    .section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .section > .sub {
+      color: #94a3b8;
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #12142a, #0f111f);
+      border: 1px solid #1e203a;
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #6366f1;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(99, 102, 241, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ───── steps ───── */
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      counter-reset: step;
+    }
+
+    .step {
+      flex: 1 1 200px;
+      max-width: 260px;
+      text-align: center;
+    }
+
+    .step-num {
+      counter-increment: step;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 1rem;
+    }
+
+    .step h4 {
+      margin-bottom: 0.4rem;
+    }
+    .step p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* ───── form ───── */
+    .form-card {
+      background: linear-gradient(145deg, #12142a, #0f111f);
+      border: 1px solid #1e203a;
+      border-radius: 24px;
+      padding: 3rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .form-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .form-card .sub {
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: #cbd5e1;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: #0b0d17;
+      border: 1px solid #1e203a;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .btn-full {
+      width: 100%;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    .success-msg.show {
+      display: block;
+    }
+    .success-msg .check {
+      font-size: 3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ───── footer ───── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #475569;
+      font-size: 0.85rem;
+      border-top: 1px solid #1e203a;
+    }
+
+    /* ───── responsive ───── */
+    @media (max-width: 640px) {
+      .form-card { padding: 1.5rem; }
+      .hero-actions { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <span class="badge">&#9733; Бесплатно для всех</span>
+  <h1>Создаём сайты,<br />которые работают</h1>
+  <p>Закажите профессиональный сайт бесплатно. Лендинг, визитка, интернет-магазин — всё, что нужно вашему бизнесу.</p>
+  <div class="hero-actions">
+    <a href="#order" class="btn btn-primary">Заказать сайт →</a>
+    <a href="#works" class="btn btn-outline">Как это работает</a>
+  </div>
+</section>
+
+<!-- ─── WHY US ─── -->
+<section class="section" id="features">
+  <span class="section-label">Преимущества</span>
+  <h2>Почему выбирают нас</h2>
+  <p class="sub">Мы делаем качественные сайты бесплатно, чтобы помочь вашему бизнесу расти.</p>
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <h3>Современный дизайн</h3>
+      <p>Актуальные тренды, адаптивная вёрстка, уникальный стиль под ваш бренд.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Быстрая загрузка</h3>
+      <p>Оптимизированный код и изображения — сайт летает на любых устройствах.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔧</div>
+      <h3>Поддержка и доработки</h3>
+      <p>Помогаем после запуска, вносим правки бесплатно в течение месяца.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <h3>Адаптивность</h3>
+      <p>Идеально смотрится на телефонах, планшетах и компьютерах.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h3>SEO-база</h3>
+      <p>Базовая оптимизация для поисковых систем, чтобы вас находили.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h3>Честная цена</h3>
+      <p>Прозрачные условия без скрытых платежей. Действительно бесплатно.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="section" id="works">
+  <span class="section-label">Процесс</span>
+  <h2>Как это работает</h2>
+  <p class="sub">Всего 4 простых шага, и ваш сайт готов.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Оставляете заявку</h4>
+      <p>Заполняете форму — рассказываете о своём проекте.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Обсуждаем детали</h4>
+      <p>Мы связываемся с вами и уточняем все пожелания.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Создаём сайт</h4>
+      <p>Разрабатываем дизайн и вёрстку — вы получаете готовый результат.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Отдаём все файлы сайта и даём советы</h4>
+      <p>Передаём сайт и рекомендации по развитию.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ORDER FORM ─── -->
+<section class="section" id="order">
+  <span class="section-label">Заявка</span>
+  <h2>Закажите сайт бесплатно</h2>
+  <p class="sub">Заполните форму, и мы свяжемся с вами в ближайшее время.</p>
+
+  <div class="form-card">
+    <div id="formContainer">
+      <h3>Оставьте заявку</h3>
+      <p class="sub">Расскажите, какой сайт вам нужен.</p>
+      <form id="orderForm">
+        <div class="form-group">
+          <label for="name">Ваше имя</label>
+          <input type="text" id="name" placeholder="Александр" required />
+        </div>
+        <div class="form-group">
+          <label for="contact">Телефон / Telegram</label>
+          <input type="text" id="contact" placeholder="@username или +7 (999) 123-45-67" required />
+        </div>
+        <div class="form-group">
+          <label for="type">Тип сайта</label>
+          <select id="type">
+            <option value="landing">Лендинг (одностраничный)</option>
+            <option value="business">Сайт-визитка</option>
+            <option value="store">Интернет-магазин</option>
+            <option value="blog">Блог / Портфолио</option>
+            <option value="other">Другое</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="desc">Опишите идею</label>
+          <textarea id="desc" placeholder="Расскажите о вашем бизнесе, какие функции нужны, какой стиль предпочитаете..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Отправить заявку</button>
+      </form>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+      <div class="check">✅</div>
+      <h3>Заявка принята!</h3>
+      <p class="sub">Мы свяжемся с вами в течение 2 дней. Проверьте указанные контакты.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  &copy; 2026 Бесплатное создание сайтов &mdash; делаем качественные сайты для вашего бизнеса
+</footer>
+
+<script>
+  const form = document.getElementById('orderForm');
+  const container = document.getElementById('formContainer');
+  const success = document.getElementById('successMsg');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // Имитация отправки
+    container.style.display = 'none';
+    success.classList.add('show');
+  });
+</script>
+
+</body>
+</html>
